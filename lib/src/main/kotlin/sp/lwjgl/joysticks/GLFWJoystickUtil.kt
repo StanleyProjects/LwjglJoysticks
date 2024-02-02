@@ -8,8 +8,8 @@ internal object GLFWJoystickUtil {
         if (!isPresent) return null
         val id = GLFW.glfwGetJoystickGUID(number)
         if (id.isNullOrBlank()) return null
-        val buttons = GLFW.glfwGetJoystickButtons(number)?.array() ?: return null
-        val axes = GLFW.glfwGetJoystickAxes(number)?.array() ?: return null
+        val buttons = GLFW.glfwGetJoystickButtons(number)?.toByteArray() ?: return null
+        val axes = GLFW.glfwGetJoystickAxes(number)?.toFloatArray() ?: return null
         val name = GLFW.glfwGetGamepadName(number)?.takeIf { it.isNotBlank() } ?: "Joystick #$number"
         return GLFWJoystick(
             metaData = JoystickMetaData(
