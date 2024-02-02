@@ -20,3 +20,11 @@ tasks.getByName<JavaCompile>("compileTestJava") {
 tasks.getByName<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>("compileTestKotlin") {
     kotlinOptions.jvmTarget = Version.jvmTarget
 }
+
+dependencies {
+    val group = LwjglUtil.group
+    implementation(platform("$group:lwjgl-bom:${Version.lwjgl}"))
+    LwjglUtil.modules.forEach { name ->
+        implementation(group = group, name = name)
+    }
+}
