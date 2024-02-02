@@ -2,7 +2,7 @@ package sp.lwjgl.joysticks
 
 import java.util.Objects
 
-class GLFWJoystick(
+internal class GLFWJoystick(
     val metaData: JoystickMetaData,
     val buttons: ByteArray,
     val axes: FloatArray,

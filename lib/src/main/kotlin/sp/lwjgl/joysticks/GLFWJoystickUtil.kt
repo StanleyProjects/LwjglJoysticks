@@ -3,8 +3,8 @@ package sp.lwjgl.joysticks
 import org.lwjgl.glfw.GLFW
 import java.util.UUID
 
-object GLFWJoystickUtil {
-    private fun getJoystickOrNull(number: Int): GLFWJoystick? {
+internal object GLFWJoystickUtil {
+    fun getJoystickOrNull(number: Int): GLFWJoystick? {
         val isPresent = GLFW.glfwJoystickPresent(number)
         if (!isPresent) return null
         val id = try {
