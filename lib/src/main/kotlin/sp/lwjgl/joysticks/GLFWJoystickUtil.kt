@@ -2,7 +2,7 @@ package sp.lwjgl.joysticks
 
 import org.lwjgl.glfw.GLFW
 
-internal object GLFWJoystickUtil {
+object GLFWJoystickUtil {
     fun getJoystickOrNull(number: Int): GLFWJoystick? {
         val isPresent = GLFW.glfwJoystickPresent(number)
         if (!isPresent) return null
