@@ -3,6 +3,7 @@ import sp.gx.core.Badge
 import sp.gx.core.GitHub
 import sp.gx.core.Markdown
 import sp.gx.core.Maven
+import sp.gx.core.assemble
 import sp.gx.core.camelCase
 import sp.gx.core.check
 import sp.gx.core.colonCase
@@ -52,6 +53,21 @@ dependencies {
 
 "unstable".also { variant ->
     val version = kebabCase(version.toString(), variant.uppercase(Locale.US))
+    task(camelCase("assemble", variant, "MavenMetadata")) {
+        doLast {
+            val file = layout.buildDirectory.get()
+                .dir("xml")
+                .file("maven-metadata.xml")
+                .asFile
+            file.assemble(
+                Maven.metadata(
+                    artifact = maven,
+                    version = version,
+                ),
+            )
+            println("Maven metadata: ${file.absolutePath}")
+        }
+    }
     task(camelCase("check", variant, "Readme")) {
         doLast {
             val badge = Markdown.image(
