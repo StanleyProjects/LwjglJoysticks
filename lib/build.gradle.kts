@@ -9,7 +9,7 @@ import sp.gx.core.colonCase
 import sp.gx.core.kebabCase
 import java.util.Locale
 
-version = "0.0.3"
+version = "0.1.0"
 
 val maven = Maven.Artifact(
     group = "com.github.kepocnhh",
