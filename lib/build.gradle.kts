@@ -1,3 +1,4 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import sp.gx.core.Badge
 import sp.gx.core.GitHub
 import sp.gx.core.Markdown
@@ -26,7 +27,7 @@ plugins {
     id("org.jetbrains.kotlin.jvm")
 }
 
-val compileKotlinTask = tasks.getByName<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>("compileKotlin") {
+val compileKotlinTask = tasks.getByName<KotlinCompile>("compileKotlin") {
     kotlinOptions {
         jvmTarget = Version.jvmTarget
         freeCompilerArgs = freeCompilerArgs + setOf("-module-name", colonCase(maven.group, maven.id))
@@ -37,7 +38,7 @@ tasks.getByName<JavaCompile>("compileTestJava") {
     targetCompatibility = Version.jvmTarget
 }
 
-tasks.getByName<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>("compileTestKotlin") {
+tasks.getByName<KotlinCompile>("compileTestKotlin") {
     kotlinOptions.jvmTarget = Version.jvmTarget
 }
 
