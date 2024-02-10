@@ -8,7 +8,6 @@ import sp.gx.core.camelCase
 import sp.gx.core.check
 import sp.gx.core.colonCase
 import sp.gx.core.kebabCase
-import java.util.Locale
 
 version = "0.1.1"
 
@@ -52,7 +51,7 @@ dependencies {
 }
 
 "unstable".also { variant ->
-    val version = kebabCase(version.toString(), variant.uppercase(Locale.US))
+    val version = "${version}u-SNAPSHOT"
     task(camelCase("assemble", variant, "MavenMetadata")) {
         doLast {
             val file = layout.buildDirectory.get()
