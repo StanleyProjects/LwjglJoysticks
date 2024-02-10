@@ -56,16 +56,18 @@ dependencies {
     task(camelCase("assemble", variant, "MavenMetadata")) {
         doLast {
             val file = layout.buildDirectory.get()
-                .dir("xml")
-                .file("maven-metadata.xml")
+                .dir("yml")
+                .file("maven-metadata.yml")
                 .asFile
             file.assemble(
-                Maven.metadata(
-                    artifact = maven,
-                    version = version,
-                ),
+                """
+                    repository:
+                     groupId: '${maven.group}'
+                     artifactId: '${maven.id}'
+                    version: '$version'
+                """.trimIndent(),
             )
-            println("Maven metadata: ${file.absolutePath}")
+            println("Metadata: ${file.absolutePath}")
         }
     }
     task(camelCase("check", variant, "Readme")) {
